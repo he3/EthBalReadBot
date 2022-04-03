@@ -23,25 +23,13 @@ client.on('ready', () => {
     client.api.applications(client.user.id).commands.post({
         data: {
             name: 'dao_balance',
-            description: 'Get the DAO balance.',
-            options: [{
-                type: 3,
-                name: 'addresses',
-                description: 'List of addresses',
-                required: true
-            }]
+            description: 'Get the DAO balance.'
         }
     });
     client.api.applications(client.user.id).commands.post({
         data: {
             name: 'glitch_reward',
-            description: 'Get the glitch_reward.',
-            options: [{
-                type: 3,
-                name: 'addresses',
-                description: 'List of addresses',
-                required: true
-            }]
+            description: 'Get the glitch_reward.'
         }
     });
 
