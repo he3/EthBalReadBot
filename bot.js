@@ -38,14 +38,7 @@ client.on('ready', () => {
         const commandName = interaction.data.name;
         
         if (commandName == 'dao_balance') {
-            let addresses = interaction.data.options[0].value.split(/[\s,]+/).filter(x => web3.utils.isAddress(x)).filter(onlyUnique);
-            addresses.push(cyopFundContractAddress)
-            let acm = [];
-            while (addresses.length > 0) {
-                let address = addresses.pop();
-                acm.unshift(`${web3.utils.fromWei(await web3.eth.getBalance(address), 'ether')} ETH`);
-            }
-            let content = '' + acm.join('\n');
+            let content = `${web3.utils.fromWei(await web3.eth.getBalance(cyopFundContractAddress), 'ether')} ETH`
             if (content.length === 0) content = 'no valid addresses provided';
             client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
@@ -58,14 +51,7 @@ client.on('ready', () => {
         }
 
         if (commandName == 'glitch_reward') {
-            let addresses = interaction.data.options[0].value.split(/[\s,]+/).filter(x => web3.utils.isAddress(x)).filter(onlyUnique);
-            addresses.push(cyopFundContractAddress)
-            let acm = [];
-            while (addresses.length > 0) {
-                let address = addresses.pop();
-                acm.unshift(`${web3.utils.fromWei(await web3.eth.getBalance(address), 'ether')*0.1} ETH`);
-            }
-            let content = '' + acm.join('\n');
+            let content = `${web3.utils.fromWei(await web3.eth.getBalance(cyopFundContractAddress), 'ether')*0.1} ETH`
             if (content.length === 0) content = 'no valid addresses provided';
             client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
