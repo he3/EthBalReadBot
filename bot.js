@@ -1,8 +1,13 @@
 const Web3 = require('web3');
 
-const keys = require('./keys');
+//const keys = require('./keys');
+const aws = require('aws-sdk');
 
-const web3 = new Web3(new Web3.providers.HttpProvider(`https://mainnet.infura.io/v3/${keys.infura}`));
+let s3 = new aws.S3({
+    infura: process.env.infura
+});
+
+const web3 = new Web3(new Web3.providers.HttpProvider(`https://mainnet.infura.io/v3/${s3.infura}`));
 
 const { Client, Intents } = require('discord.js');
 
