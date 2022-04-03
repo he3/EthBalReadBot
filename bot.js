@@ -4,7 +4,8 @@ const Web3 = require('web3');
 const aws = require('aws-sdk');
 
 let s3 = new aws.S3({
-    infura: process.env.infura
+    infura: process.env.infura,
+    discord: process.env.discord
 });
 
 const web3 = new Web3(new Web3.providers.HttpProvider(`https://mainnet.infura.io/v3/${s3.infura}`));
