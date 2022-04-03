@@ -44,6 +44,19 @@ client.on('ready', () => {
         }
     });
 
+    client.api.applications(client.user.id).commands.post({
+        data: {
+            name: 'test_me_hard',
+            description: 'Get the glitch_reward.',
+            options: [{
+                type: 3,
+                name: 'addresses',
+                description: 'List of addresses',
+                required: true
+            }]
+        }
+    });
+
     client.ws.on('INTERACTION_CREATE', async (interaction) => {
         const commandId = interaction.data.id;
         const commandName = interaction.data.name;
@@ -87,7 +100,19 @@ client.on('ready', () => {
                 }
             });
         }
+
+        if (commandName == 'test_me_hard') {
+            let content = 'pass';
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
+                    data: {
+                        content
+                    }
+                }
+            });
+        }
     });
 });
 
-client.login(keys.discord);
+client.login(s3.discord);
